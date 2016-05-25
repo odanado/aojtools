@@ -78,14 +78,15 @@ def ProblemSearchAPI(id, **kwargs):
     s.memorylimit = int(s.memorylimit)
     s.outputlimit = int(s.outputlimit)
     s.runtimeerror = int(s.runtimeerror)
-    rsp.solved_list.user = to_list(rsp.solved_list.user)
-    for user in rsp.solved_list.user:
-        user.id = str(user.id)
-        user.submissiondate = time2date(user.submissiondate)
-        user.language = str(user.language)
-        user.cputime = int(user.cputime)
-        user.memory = int(user.memory)
-        user.code_size = int(user.code_size)
+    if rsp.solved_list != None:
+        rsp.solved_list.user = to_list(rsp.solved_list.user)
+        for user in rsp.solved_list.user:
+            user.id = str(user.id)
+            user.submissiondate = time2date(user.submissiondate)
+            user.language = str(user.language)
+            user.cputime = int(user.cputime)
+            user.memory = int(user.memory)
+            user.code_size = int(user.code_size)
     return rsp
 def ProblemListSearchAPI(volume, **kwargs):
     # type check
